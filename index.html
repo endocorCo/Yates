@@ -142,8 +142,9 @@ tailwind.config = {
   /* Masonry */
   .masonry { column-count:3; column-gap:14px; }
   @media(max-width:900px){ .masonry{column-count:2} }
-  @media(max-width:560px){ .masonry{column-count:1} }
+  @media(max-width:560px){ .masonry{column-count:2; column-gap:8px} }
   .masonry > div { break-inside:avoid; margin-bottom:14px; }
+  @media(max-width:560px){ .masonry > div { margin-bottom:8px } }
   :focus-visible { outline:2px solid #D4AF37; outline-offset:3px; }
 </style>
 </head>
