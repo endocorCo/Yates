@@ -311,6 +311,9 @@ tailwind.config = {
       <p class="text-white/55 max-w-xl mx-auto mt-4 text-base leading-relaxed" data-i="fleet_lead">Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="fleetGrid"></div>
+    <div class="text-center mt-12" id="fleetMoreWrap">
+      <button onclick="toggleFleet()" class="btn-outline px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide inline-flex items-center gap-2 group"><span data-i="fleet_more">Ver más yates</span> <i data-lucide="chevron-down" class="w-4 h-4 arrow-nudge"></i></button>
+    </div>
   </div>
 </section>
 
@@ -526,6 +529,7 @@ const I18N = {
   f_cta:['¡RESERVA TU YATE AHORA!','BOOK YOUR YACHT NOW!'],
   exp_title:['Experiencias a medida','Tailored experiences'], exp_lead:['Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.','Every outing is designed around your occasion. Choose the pace, we handle the rest.'],
   fleet_title:['Nuestra flota','Our fleet'], fleet_lead:['Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.','Yachts, catamarans and trimarans chosen for comfort, safety and elegance.'],
+  fleet_more:['Ver más yates','View more yachts'], d_other:['Otros yates disponibles','Other available yachts'],
   gal_title:['Galería','Gallery'], testi_title:['Lo que dicen a bordo','What guests say'], faq_title:['Preguntas frecuentes','Frequently asked'],
   con_title:['Solicita tu cotización','Request a quote'], con_lead:['Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.','Tell us your occasion and an advisor will reply on WhatsApp with a tailored proposal.'],
   con_name:['Nombre','Name'], con_phone:['Teléfono','Phone'], con_email:['Correo','Email'], con_date:['Fecha deseada','Preferred date'], con_pax:['Pasajeros','Guests'], con_boat:['Yate de interés','Yacht of interest'], con_msg:['Mensaje','Message'], con_cta:['Solicitar Cotización','Request Quote'], con_note:['Te respondemos por WhatsApp en minutos.','We reply on WhatsApp within minutes.'],
@@ -568,8 +572,11 @@ function renderExp() {
   refresh();
 }
 
+const FLEET_PAGE_SIZE = 4;
+let fleetExpanded = false;
 function renderFleet() {
-  document.getElementById('fleetGrid').innerHTML = FLEET.map((b,i)=>`
+  const list = fleetExpanded ? FLEET : FLEET.slice(0, FLEET_PAGE_SIZE);
+  document.getElementById('fleetGrid').innerHTML = list.map((b,i)=>`
     <article class="fleet-card reveal d${(i%3)+1} bg-white rounded-2xl overflow-hidden cursor-pointer group" onclick="openDetail('${b.id}')">
       <div class="h-60 relative">${imgEl(b.img,b.name,'fleet h-full')}
         <span class="absolute top-4 left-4 bg-teal text-white text-[.65rem] eyebrow px-3 py-1.5 rounded-full">${b.type}</span>
@@ -591,8 +598,11 @@ function renderFleet() {
         </div>
       </div>
     </article>`).join('');
+  const moreWrap = document.getElementById('fleetMoreWrap');
+  if (moreWrap) moreWrap.style.display = (!fleetExpanded && FLEET.length > FLEET_PAGE_SIZE) ? '' : 'none';
   refresh();
 }
+function toggleFleet(){ fleetExpanded = true; renderFleet(); }
 
 function renderGallery(filter='Todos') {
   document.getElementById('galFilters').innerHTML = GAL_CATS.map(c=>`
@@ -736,6 +746,26 @@ function openDetail(id) {
           </div>
         </aside>
       </div>
+
+      <!-- other yachts -->
+      <section class="max-w-7xl mx-auto px-6 pb-16">
+        <h2 class="font-display text-3xl text-navy font-500 mb-6">${t('d_other')}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          ${FLEET.filter(o=>o.id!==b.id).map(o=>`
+            <article class="fleet-card bg-white rounded-2xl overflow-hidden cursor-pointer group border border-navy/5" onclick="openDetail('${o.id}')">
+              <div class="h-36 relative">${imgEl(o.img,o.name,'fleet h-full')}
+                <span class="absolute top-3 left-3 bg-teal text-white text-[.6rem] eyebrow px-2.5 py-1 rounded-full">${o.type}</span>
+              </div>
+              <div class="p-4">
+                <h3 class="font-display text-lg text-navy font-500">${o.name}</h3>
+                <div class="flex items-center justify-between mt-2">
+                  <span class="font-display text-lg text-navy">$${o.price} <span class="text-xs text-ink/50">MXN</span></span>
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-navy/40 group-hover:text-gold transition arrow-nudge"></i>
+                </div>
+              </div>
+            </article>`).join('')}
+        </div>
+      </section>
 
       <!-- mobile bottom sticky -->
       <div class="lg:hidden sticky bottom-0 glass-light border-t border-navy/10 p-3 flex gap-3 z-20">
