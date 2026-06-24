@@ -290,7 +290,7 @@ tailwind.config = {
       <p class="chapter-no waterline pl-16">CAP. 01</p>
       <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-3" data-i="exp_title">Experiencias a medida</h2>
     </div>
-    <p class="hidden md:block max-w-sm text-ink/60 text-sm leading-relaxed" data-i="exp_lead">Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.</p>
+    <p class="hidden md:block max-w-sm text-ink/60 text-base leading-relaxed" data-i="exp_lead">Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.</p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="expGrid"></div>
@@ -302,7 +302,7 @@ tailwind.config = {
     <div class="text-center mb-16 reveal">
       <p class="chapter-no-teal">CAP. 02</p>
       <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2" data-i="fleet_title">Nuestra flota</h2>
-      <p class="text-white/55 max-w-xl mx-auto mt-4 text-sm leading-relaxed" data-i="fleet_lead">Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.</p>
+      <p class="text-white/55 max-w-xl mx-auto mt-4 text-base leading-relaxed" data-i="fleet_lead">Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="fleetGrid"></div>
   </div>
@@ -353,7 +353,7 @@ tailwind.config = {
     <div class="reveal">
       <p class="chapter-no-teal">CAP. 06</p>
       <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2 mb-6" data-i="con_title">Solicita tu cotización</h2>
-      <p class="text-white/60 leading-relaxed mb-10 text-sm max-w-md" data-i="con_lead">Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.</p>
+      <p class="text-white/60 leading-relaxed mb-10 text-base max-w-md" data-i="con_lead">Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.</p>
       <div class="space-y-5 text-white/85 text-sm">
         <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="flex items-center gap-4 hover:text-tealsoft transition"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="message-circle" class="w-5 h-5 text-tealsoft"></i></span> +52 1 662 104 1665</a>
         <a href="tel:6621041665" class="flex items-center gap-4 hover:text-tealsoft transition"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5 text-tealsoft"></i></span> 662 104 1665</a>
@@ -388,7 +388,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
     <div class="md:col-span-2 max-w-sm">
       <div class="font-display text-2xl text-white font-500">Yates Pepe <span class="text-gold">Mazatlán</span></div>
-      <p class="text-white/55 text-sm leading-relaxed mt-4" data-i="foot_about">Renta de yates de lujo en el puerto de Mazatlán. Vive la magia del mar con un trato inigualable.</p>
+      <p class="text-white/55 text-base leading-relaxed mt-4" data-i="foot_about">Renta de yates de lujo en el puerto de Mazatlán. Vive la magia del mar con un trato inigualable.</p>
       <div class="flex gap-3 mt-6">
         <a href="https://www.instagram.com/trimaranrevenant" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-gold hover:text-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
         <a href="https://www.facebook.com/people/Yates-Pepe-Mazatl%C3%A1n/100070266970179" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-gold hover:text-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
@@ -556,7 +556,7 @@ function renderExp() {
           <i data-lucide="arrow-up-right" class="w-4 h-4 text-navy/40 group-hover:text-gold transition"></i>
         </div>
         <h3 class="font-display text-2xl text-navy font-500 exp-t">${e[LANG].t}</h3>
-        <p class="text-ink/60 text-sm leading-relaxed mt-2 exp-d">${e[LANG].d}</p>
+        <p class="text-ink/60 text-base leading-relaxed mt-2 exp-d">${e[LANG].d}</p>
       </div>
     </article>`).join('');
   refresh();
@@ -625,7 +625,7 @@ function renderFaq() {
         <span class="font-display text-xl md:text-2xl text-navy font-500 pr-6 faq-q">${f[LANG].q}</span>
         <span class="faq-icon shrink-0 w-9 h-9 rounded-full border border-navy/20 flex items-center justify-center text-navy transition group-hover:border-teal group-hover:text-teal"><i data-lucide="plus" class="w-4 h-4"></i></span>
       </button>
-      <div class="faq-body" id="faq${i}"><p class="text-ink/65 text-sm leading-relaxed pb-6 pr-12 faq-a">${f[LANG].a}</p></div>
+      <div class="faq-body" id="faq${i}"><p class="text-ink/65 text-base leading-relaxed pb-6 pr-12 faq-a">${f[LANG].a}</p></div>
     </div>`).join('');
   refresh();
 }
