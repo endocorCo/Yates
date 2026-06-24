@@ -199,6 +199,7 @@ tailwind.config = {
 <main id="site">
 
 <!-- HERO -->
+<div class="relative">
 <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden">
   <div class="absolute inset-0 -z-10 imgwrap">
     <img class="heroimg w-full h-full object-cover" src="https://images.unsplash.com/photo-1599582909646-9b16f8f6a51a?auto=format&fit=crop&w=2000&q=80" alt="Yate de lujo navegando frente a la costa de Mazatlán al atardecer" />
@@ -228,8 +229,10 @@ tailwind.config = {
     </div>
   </div>
 
+</section>
+
   <!-- BOOKING SEARCH -->
-  <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 px-6 z-20">
+  <div class="relative -mt-20 md:-mt-16 px-6 z-20">
     <div class="max-w-6xl mx-auto glass rounded-2xl p-5 md:p-6 shadow-2xl reveal d2">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
         <!-- Destino -->
@@ -267,10 +270,10 @@ tailwind.config = {
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- spacer for floating search -->
-<div class="h-44 md:h-40"></div>
+<div class="h-24 md:h-20"></div>
 
 <!-- EXPERIENCIAS -->
 <section id="experiencias" class="max-w-7xl mx-auto px-6 py-20 md:py-28">
