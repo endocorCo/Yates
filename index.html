@@ -30,6 +30,8 @@ tailwind.config = {
       colors: {
         navy:   '#071B2F',
         ocean:  '#0D3B66',
+        teal:   '#0FB5AE',
+        tealsoft:'#5FD6CE',
         gold:   '#D4AF37',
         goldsoft:'#C9A227',
         paper:  '#FBFAF7',
@@ -68,6 +70,12 @@ tailwind.config = {
   }
 
   .chapter-no { font-family:'Cormorant Garamond',serif; font-size:.85rem; letter-spacing:.4em; color:#D4AF37; }
+  .chapter-no-teal { font-family:'Cormorant Garamond',serif; font-size:.85rem; letter-spacing:.4em; color:#5FD6CE; }
+  .waterline-teal { position:relative; }
+  .waterline-teal::before {
+    content:""; position:absolute; left:0; top:50%; width:48px; height:1px;
+    background:linear-gradient(90deg,#0FB5AE,transparent);
+  }
 
   /* Scroll reveal */
   .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1); }
@@ -237,31 +245,31 @@ tailwind.config = {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
         <!-- Destino -->
         <div class="md:col-span-4 relative">
-          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3"></i> <span data-i="f_dest">Destino</span></label>
+          <label class="eyebrow text-tealsoft text-[.6rem] flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3"></i> <span data-i="f_dest">Destino</span></label>
           <input id="destInput" autocomplete="off" placeholder="¿A dónde vamos?" data-ph-es="¿A dónde vamos?" data-ph-en="Where to?" class="w-full bg-transparent border-b border-white/25 text-white placeholder-white/40 py-2 focus:border-gold outline-none transition text-sm" />
           <div id="destList" class="hidden absolute top-full left-0 right-0 mt-2 bg-navy border border-gold/25 rounded-xl overflow-hidden z-30 shadow-xl"></div>
         </div>
         <!-- Tipo -->
         <div class="md:col-span-3">
-          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="sailboat" class="w-3 h-3"></i> <span data-i="f_type">Embarcación</span></label>
-          <select id="boatType" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-gold outline-none transition text-sm [&>option]:text-navy">
+          <label class="eyebrow text-tealsoft text-[.6rem] flex items-center gap-1.5"><i data-lucide="sailboat" class="w-3 h-3"></i> <span data-i="f_type">Embarcación</span></label>
+          <select id="boatType" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-teal outline-none transition text-sm [&>option]:text-navy">
             <option data-i="opt_all">Todos</option>
             <option>Yates</option><option>Catamaranes</option><option>Trimaranes</option>
           </select>
         </div>
         <!-- Pasajeros -->
         <div class="md:col-span-2">
-          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="users" class="w-3 h-3"></i> <span data-i="f_pax">Pasajeros</span></label>
+          <label class="eyebrow text-tealsoft text-[.6rem] flex items-center gap-1.5"><i data-lucide="users" class="w-3 h-3"></i> <span data-i="f_pax">Pasajeros</span></label>
           <div class="flex items-center justify-between border-b border-white/25 py-1.5">
-            <button onclick="pax(-1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-gold hover:text-gold transition">−</button>
+            <button onclick="pax(-1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-teal hover:text-tealsoft transition">−</button>
             <span id="paxVal" class="text-white font-medium">6</span>
-            <button onclick="pax(1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-gold hover:text-gold transition">+</button>
+            <button onclick="pax(1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-teal hover:text-tealsoft transition">+</button>
           </div>
         </div>
         <!-- Fecha -->
         <div class="md:col-span-2">
-          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="calendar" class="w-3 h-3"></i> <span data-i="f_date">Fecha</span></label>
-          <input type="date" id="dateInput" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-gold outline-none transition text-sm [color-scheme:dark]" />
+          <label class="eyebrow text-tealsoft text-[.6rem] flex items-center gap-1.5"><i data-lucide="calendar" class="w-3 h-3"></i> <span data-i="f_date">Fecha</span></label>
+          <input type="date" id="dateInput" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-teal outline-none transition text-sm [color-scheme:dark]" />
         </div>
         <!-- CTA -->
         <div class="md:col-span-12 lg:col-span-12">
@@ -292,7 +300,7 @@ tailwind.config = {
 <section id="yates" class="bg-navy py-20 md:py-28 relative">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16 reveal">
-      <p class="chapter-no">CAP. 02</p>
+      <p class="chapter-no-teal">CAP. 02</p>
       <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2" data-i="fleet_title">Nuestra flota</h2>
       <p class="text-white/55 max-w-xl mx-auto mt-4 text-sm leading-relaxed" data-i="fleet_lead">Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.</p>
     </div>
@@ -314,7 +322,7 @@ tailwind.config = {
 <section class="bg-mist py-20 md:py-28 overflow-hidden">
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-14 reveal">
-      <p class="chapter-no">CAP. 04</p>
+      <p class="chapter-no-teal">CAP. 04</p>
       <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-2" data-i="testi_title">Lo que dicen a bordo</h2>
     </div>
     <div class="relative reveal">
@@ -343,14 +351,14 @@ tailwind.config = {
 <section id="contacto" class="bg-navy py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
     <div class="reveal">
-      <p class="chapter-no">CAP. 06</p>
+      <p class="chapter-no-teal">CAP. 06</p>
       <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2 mb-6" data-i="con_title">Solicita tu cotización</h2>
       <p class="text-white/60 leading-relaxed mb-10 text-sm max-w-md" data-i="con_lead">Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.</p>
       <div class="space-y-5 text-white/85 text-sm">
-        <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="message-circle" class="w-5 h-5 text-gold"></i></span> +52 1 662 104 1665</a>
-        <a href="tel:6621041665" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5 text-gold"></i></span> 662 104 1665</a>
-        <a href="mailto:trimaranrevenantmzt@gmail.com" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="mail" class="w-5 h-5 text-gold"></i></span> trimaranrevenantmzt@gmail.com</a>
-        <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5 text-gold"></i></span> Paseo de la Isla 2209, La Marina, Mazatlán</div>
+        <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="flex items-center gap-4 hover:text-tealsoft transition"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="message-circle" class="w-5 h-5 text-tealsoft"></i></span> +52 1 662 104 1665</a>
+        <a href="tel:6621041665" class="flex items-center gap-4 hover:text-tealsoft transition"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5 text-tealsoft"></i></span> 662 104 1665</a>
+        <a href="mailto:trimaranrevenantmzt@gmail.com" class="flex items-center gap-4 hover:text-tealsoft transition"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="mail" class="w-5 h-5 text-tealsoft"></i></span> trimaranrevenantmzt@gmail.com</a>
+        <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-full border border-teal/40 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5 text-tealsoft"></i></span> Paseo de la Isla 2209, La Marina, Mazatlán</div>
       </div>
     </div>
 
@@ -558,7 +566,7 @@ function renderFleet() {
   document.getElementById('fleetGrid').innerHTML = FLEET.map((b,i)=>`
     <article class="fleet-card reveal d${(i%3)+1} bg-white rounded-2xl overflow-hidden cursor-pointer group" onclick="openDetail('${b.id}')">
       <div class="h-60 relative">${imgEl(b.img,b.name,'fleet h-full')}
-        <span class="absolute top-4 left-4 glass text-white text-[.65rem] eyebrow px-3 py-1.5 rounded-full">${b.type}</span>
+        <span class="absolute top-4 left-4 bg-teal text-white text-[.65rem] eyebrow px-3 py-1.5 rounded-full">${b.type}</span>
       </div>
       <div class="p-6">
         <div class="flex items-center justify-between">
@@ -582,7 +590,7 @@ function renderFleet() {
 
 function renderGallery(filter='Todos') {
   document.getElementById('galFilters').innerHTML = GAL_CATS.map(c=>`
-    <button onclick="renderGallery('${c}')" class="px-5 py-2 rounded-full text-xs font-medium transition ${c===filter?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}">${c==='Todos'?t('opt_all'):c}</button>`).join('');
+    <button onclick="renderGallery('${c}')" class="px-5 py-2 rounded-full text-xs font-medium transition ${c===filter?'bg-teal text-white':'bg-mist text-navy/70 hover:bg-navy/10'}">${c==='Todos'?t('opt_all'):c}</button>`).join('');
   const items = GALLERY.filter(g=>filter==='Todos'||g.c===filter);
   document.getElementById('galGrid').innerHTML = items.map((g,i)=>`
     <div class="reveal rounded-xl overflow-hidden cursor-pointer group relative" onclick="openLb('${unsplash(g.id,1400)}')">
@@ -601,12 +609,12 @@ function renderTesti() {
         <div class="flex justify-center gap-1 mb-5">${'★'.repeat(x.r).split('').map(()=>'<span class="text-gold text-lg">★</span>').join('')}</div>
         <p class="font-display text-2xl md:text-3xl text-navy font-400 italic leading-snug">“${x[LANG]}”</p>
         <div class="flex items-center justify-center gap-3 mt-7">
-          <div class="imgwrap w-12 h-12 rounded-full overflow-hidden"><img data-src="${unsplash(x.img,200)}" alt="${x.n}" class="w-full h-full object-cover"/><div class="skeleton"></div></div>
+          <div class="imgwrap w-12 h-12 rounded-full overflow-hidden border-2 border-teal/40"><img data-src="${unsplash(x.img,200)}" alt="${x.n}" class="w-full h-full object-cover"/><div class="skeleton"></div></div>
           <div class="text-left"><div class="font-semibold text-navy text-sm">${x.n}</div><div class="text-ink/50 text-xs">Mazatlán</div></div>
         </div>
       </div>
     </div>`).join('');
-  document.getElementById('testiDots').innerHTML = TESTIMONIALS.map((_,i)=>`<button onclick="testiGo(${i})" class="w-2 h-2 rounded-full transition ${i===0?'bg-gold w-6':'bg-navy/20'}" data-dot="${i}"></button>`).join('');
+  document.getElementById('testiDots').innerHTML = TESTIMONIALS.map((_,i)=>`<button onclick="testiGo(${i})" class="w-2 h-2 rounded-full transition ${i===0?'bg-teal w-6':'bg-navy/20'}" data-dot="${i}"></button>`).join('');
   refresh();
 }
 
@@ -615,7 +623,7 @@ function renderFaq() {
     <div class="reveal">
       <button onclick="toggleFaq(${i})" class="w-full flex items-center justify-between py-6 text-left group">
         <span class="font-display text-xl md:text-2xl text-navy font-500 pr-6 faq-q">${f[LANG].q}</span>
-        <span class="faq-icon shrink-0 w-9 h-9 rounded-full border border-navy/20 flex items-center justify-center text-navy transition group-hover:border-gold"><i data-lucide="plus" class="w-4 h-4"></i></span>
+        <span class="faq-icon shrink-0 w-9 h-9 rounded-full border border-navy/20 flex items-center justify-center text-navy transition group-hover:border-teal group-hover:text-teal"><i data-lucide="plus" class="w-4 h-4"></i></span>
       </button>
       <div class="faq-body" id="faq${i}"><p class="text-ink/65 text-sm leading-relaxed pb-6 pr-12 faq-a">${f[LANG].a}</p></div>
     </div>`).join('');
@@ -670,7 +678,7 @@ function openDetail(id) {
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
               ${[['bed-double',t('s_cabins'),b.cabins],['bath',t('s_baths'),b.baths],['users',t('s_cap'),b.cap+' '+t('pax_word')],['sailboat',t('s_type'),b.type],['calendar',t('s_year'),b.year]].map(s=>`
                 <div class="bg-mist rounded-xl p-5">
-                  <i data-lucide="${s[0]}" class="w-5 h-5 text-gold"></i>
+                  <i data-lucide="${s[0]}" class="w-5 h-5 text-teal"></i>
                   <div class="eyebrow text-ink/45 text-[.55rem] mt-3">${s[1]}</div>
                   <div class="font-display text-2xl text-navy">${s[2]}</div>
                 </div>`).join('')}
@@ -681,7 +689,7 @@ function openDetail(id) {
           <section>
             <h2 class="font-display text-3xl text-navy font-500 mb-6">${t('d_gal')}</h2>
             <div class="flex flex-wrap gap-2 mb-6">
-              ${galTabs.map((cat,ci)=>`<button onclick="dgalTab(${ci})" class="dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${ci===0?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}" data-tab="${ci}">${cat}</button>`).join('')}
+              ${galTabs.map((cat,ci)=>`<button onclick="dgalTab(${ci})" class="dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${ci===0?'bg-teal text-white':'bg-mist text-navy/70 hover:bg-navy/10'}" data-tab="${ci}">${cat}</button>`).join('')}
             </div>
             ${galHtml}
           </section>
@@ -690,7 +698,7 @@ function openDetail(id) {
           <section class="grid md:grid-cols-2 gap-10">
             <div>
               <h3 class="font-display text-2xl text-navy font-500 mb-5">${t('d_inc')}</h3>
-              <ul class="space-y-3">${inc.map(i=>`<li class="flex items-center gap-3 text-sm text-ink/75"><span class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5 text-gold"></i></span> ${i}</li>`).join('')}</ul>
+              <ul class="space-y-3">${inc.map(i=>`<li class="flex items-center gap-3 text-sm text-ink/75"><span class="w-6 h-6 rounded-full bg-teal/15 flex items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5 text-teal"></i></span> ${i}</li>`).join('')}</ul>
             </div>
             <div>
               <h3 class="font-display text-2xl text-navy font-500 mb-5">${t('d_exc')}</h3>
@@ -736,7 +744,7 @@ function openDetail(id) {
   refresh(); lazyAll();
 }
 function closeDetail(){ document.getElementById('detailView').style.display='none'; document.body.classList.remove('detail-open'); }
-function dgalTab(i){ document.querySelectorAll('.dgal-pane').forEach(p=>p.classList.toggle('hidden', +p.dataset.pane!==i)); document.querySelectorAll('.dgal-tab').forEach(b=>{const a=+b.dataset.tab===i; b.className=`dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${a?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}`; b.dataset.tab=b.dataset.tab;}); lazyAll(); }
+function dgalTab(i){ document.querySelectorAll('.dgal-pane').forEach(p=>p.classList.toggle('hidden', +p.dataset.pane!==i)); document.querySelectorAll('.dgal-tab').forEach(b=>{const a=+b.dataset.tab===i; b.className=`dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${a?'bg-teal text-white':'bg-mist text-navy/70 hover:bg-navy/10'}`; b.dataset.tab=b.dataset.tab;}); lazyAll(); }
 
 /* ===================== INTERACTIONS ===================== */
 let paxCount = 6;
@@ -756,10 +764,10 @@ destInput.addEventListener('input',()=>{
   const v=destInput.value.toLowerCase();
   const m=DESTS.filter(d=>d.toLowerCase().includes(v));
   if(!v||!m.length){destList.classList.add('hidden');return;}
-  destList.innerHTML=m.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-gold hover:text-navy transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join('');
+  destList.innerHTML=m.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-teal hover:text-white transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join('');
   destList.classList.remove('hidden'); refresh();
 });
-destInput.addEventListener('focus',()=>{ if(!destInput.value){ destList.innerHTML=DESTS.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-gold hover:text-navy transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join(''); destList.classList.remove('hidden'); refresh(); }});
+destInput.addEventListener('focus',()=>{ if(!destInput.value){ destList.innerHTML=DESTS.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-teal hover:text-white transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join(''); destList.classList.remove('hidden'); refresh(); }});
 document.addEventListener('click',e=>{ if(!e.target.closest('#destInput')&&!e.target.closest('#destList')) destList.classList.add('hidden'); });
 function pickDest(d){ destInput.value=d; destList.classList.add('hidden'); }
 
@@ -780,7 +788,7 @@ function toggleFaq(i){ const b=document.getElementById('faq'+i); const open=b.st
 
 // Testimonials
 let testiIdx=0;
-function testiGo(i){ testiIdx=(i+TESTIMONIALS.length)%TESTIMONIALS.length; document.getElementById('testiTrack').style.transform=`translateX(-${testiIdx*100}%)`; document.querySelectorAll('[data-dot]').forEach((d,j)=>d.className=`w-2 h-2 rounded-full transition ${j===testiIdx?'bg-gold w-6':'bg-navy/20'}`); }
+function testiGo(i){ testiIdx=(i+TESTIMONIALS.length)%TESTIMONIALS.length; document.getElementById('testiTrack').style.transform=`translateX(-${testiIdx*100}%)`; document.querySelectorAll('[data-dot]').forEach((d,j)=>d.className=`w-2 h-2 rounded-full transition ${j===testiIdx?'bg-teal w-6':'bg-navy/20'}`); }
 function testiMove(d){ testiGo(testiIdx+d); }
 setInterval(()=>{ if(!document.body.classList.contains('detail-open')) testiMove(1); },6000);
 
