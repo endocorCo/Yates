@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yates Pepe Mazatlán | Experiencias de Yate de Lujo en el Puerto</title>
+<meta name="description" content="Renta de yates de lujo en Mazatlán. Paseos inolvidables, trato inigualable y los puntos más emblemáticos del puerto desde el agua. Reserva tu experiencia en La Marina." />
+<meta name="theme-color" content="#071B2F" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Yates Pepe Mazatlán | Experiencias de Yate de Lujo" />
+<meta property="og:description" content="Vive la magia del mar en Mazatlán a bordo de nuestra flota de yates, catamaranes y trimaranes de lujo." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy:   '#071B2F',
+        ocean:  '#0D3B66',
+        gold:   '#D4AF37',
+        goldsoft:'#C9A227',
+        paper:  '#FBFAF7',
+        mist:   '#F1F0EC',
+        ink:    '#2B2B2B',
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+};
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#FBFAF7; color:#2B2B2B; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+  ::selection { background:#D4AF37; color:#071B2F; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:#071B2F; }
+  ::-webkit-scrollbar-thumb { background:#0D3B66; border:2px solid #071B2F; }
+  ::-webkit-scrollbar-thumb:hover { background:#D4AF37; }
+
+  /* Eyebrow / labels */
+  .eyebrow { letter-spacing:.32em; text-transform:uppercase; font-size:.7rem; font-weight:500; }
+
+  /* The signature "waterline" — a thin gold rule that anchors chapters */
+  .waterline { position:relative; }
+  .waterline::before {
+    content:""; position:absolute; left:0; top:50%; width:48px; height:1px;
+    background:linear-gradient(90deg,#D4AF37,transparent);
+  }
+
+  .chapter-no { font-family:'Cormorant Garamond',serif; font-size:.85rem; letter-spacing:.4em; color:#D4AF37; }
+
+  /* Scroll reveal */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1); }
+  .reveal.in { opacity:1; transform:none; }
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.40s}
+
+  /* Hero zoom */
+  @keyframes slowzoom { from{transform:scale(1.08)} to{transform:scale(1)} }
+  .heroimg { animation:slowzoom 12s ease-out forwards; }
+
+  /* Glass */
+  .glass { background:rgba(7,27,47,.55); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(212,175,55,.22); }
+  .glass-light { background:rgba(251,250,247,.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+
+  /* Card hover */
+  .fleet-card { transition:transform .6s cubic-bezier(.16,.84,.44,1), box-shadow .6s; }
+  .fleet-card:hover { transform:translateY(-8px); box-shadow:0 30px 60px -30px rgba(7,27,47,.45); }
+  .fleet-card:hover .fleet-img { transform:scale(1.06); }
+  .fleet-img { transition:transform 1.1s cubic-bezier(.16,.84,.44,1); }
+
+  /* Buttons */
+  .btn-gold { background:#D4AF37; color:#071B2F; transition:.4s; position:relative; overflow:hidden; }
+  .btn-gold:hover { background:#071B2F; color:#D4AF37; box-shadow:0 0 0 1px #D4AF37 inset; }
+  .btn-outline { border:1px solid rgba(255,255,255,.5); color:#fff; transition:.4s; }
+  .btn-outline:hover { border-color:#D4AF37; color:#D4AF37; background:rgba(212,175,55,.08); }
+
+  .link-underline { position:relative; }
+  .link-underline::after { content:""; position:absolute; left:0; bottom:-4px; width:0; height:1px; background:#D4AF37; transition:width .4s; }
+  .link-underline:hover::after { width:100%; }
+
+  /* Skeleton */
+  .skeleton { background:linear-gradient(100deg,#e9e7e1 30%,#f3f1ec 50%,#e9e7e1 70%); background-size:200% 100%; animation:shimmer 1.4s infinite; }
+  @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+  .imgwrap img { opacity:0; transition:opacity .7s ease; }
+  .imgwrap img.loaded { opacity:1; }
+  .imgwrap img.loaded + .skeleton { opacity:0; pointer-events:none; }
+  .imgwrap .skeleton { position:absolute; inset:0; transition:opacity .5s; }
+
+  /* WhatsApp float pulse */
+  @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)} 70%{box-shadow:0 0 0 16px rgba(37,211,102,0)} 100%{box-shadow:0 0 0 0 rgba(37,211,102,0)} }
+  .wa-pulse { animation:pulse-ring 2.4s infinite; }
+
+  /* Accordion */
+  .faq-body { max-height:0; overflow:hidden; transition:max-height .5s ease; }
+
+  /* Carousel track */
+  .testi-track { transition:transform .7s cubic-bezier(.16,.84,.44,1); }
+
+  /* Detail view */
+  .view-detail { display:none; }
+  body.detail-open { overflow:hidden; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,.heroimg,.fleet-img,.testi-track { transition:none!important; animation:none!important; transform:none!important; opacity:1!important; }
+  }
+
+  /* Masonry */
+  .masonry { column-count:3; column-gap:14px; }
+  @media(max-width:900px){ .masonry{column-count:2} }
+  @media(max-width:560px){ .masonry{column-count:1} }
+  .masonry > div { break-inside:avoid; margin-bottom:14px; }
+  :focus-visible { outline:2px solid #D4AF37; outline-offset:3px; }
+</style>
+</head>
+
+<body class="font-sans">
+
+<!-- ============ TOP BAR ============ -->
+<div class="hidden lg:block bg-navy text-white/70 text-xs">
+  <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="tel:6621041665" class="flex items-center gap-2 hover:text-gold transition"><i data-lucide="phone" class="w-3.5 h-3.5"></i> 662 104 1665</a>
+      <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> La Marina, Mazatlán · Sinaloa</span>
+    </div>
+    <div class="flex items-center gap-5">
+      <span class="flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5"></i> <span data-i="hours">Reservas 7 días · 8:00 – 20:00</span></span>
+      <a href="https://www.instagram.com/trimaranrevenant" target="_blank" rel="noopener" class="hover:text-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+      <a href="https://www.facebook.com/people/Yates-Pepe-Mazatl%C3%A1n/100070266970179" target="_blank" rel="noopener" class="hover:text-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="nav" class="sticky top-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+    <a href="#inicio" class="leading-none">
+      <div class="font-display text-2xl md:text-[1.7rem] font-600 tracking-wide text-white nav-logo">Yates Pepe</div>
+      <div class="eyebrow text-gold/90 text-[.6rem] mt-0.5 nav-sub">Mazatlán</div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-sm font-medium text-white/85 nav-links">
+      <a href="#inicio" class="link-underline" data-i="nav_home">Inicio</a>
+      <a href="#yates" class="link-underline" data-i="nav_fleet">Yates</a>
+      <a href="#experiencias" class="link-underline" data-i="nav_exp">Experiencias</a>
+      <a href="#galeria" class="link-underline" data-i="nav_gallery">Galería</a>
+      <a href="#faq" class="link-underline">FAQ</a>
+      <a href="#contacto" class="link-underline" data-i="nav_contact">Contacto</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="tel:6621041665" class="hidden md:flex items-center gap-2 text-sm text-white/90 hover:text-gold transition nav-tel">
+        <i data-lucide="phone-call" class="w-4 h-4"></i> 662 104 1665
+      </a>
+      <!-- Language -->
+      <div class="flex items-center text-xs rounded-full border border-white/25 overflow-hidden nav-lang">
+        <button data-lang="es" class="lang-btn px-3 py-1.5 font-semibold bg-gold text-navy">ES</button>
+        <button data-lang="en" class="lang-btn px-3 py-1.5 font-semibold text-white/80">EN</button>
+      </div>
+      <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="hidden sm:inline-flex btn-gold px-5 py-2.5 text-xs font-semibold tracking-wide rounded-full" data-i="nav_cta">RESERVAR</a>
+      <button id="burger" class="lg:hidden text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-navy/98 backdrop-blur border-t border-gold/20">
+    <nav class="flex flex-col px-6 py-5 gap-4 text-white/90 text-lg font-display">
+      <a href="#inicio" class="mlink" data-i="nav_home">Inicio</a>
+      <a href="#yates" class="mlink" data-i="nav_fleet">Yates</a>
+      <a href="#experiencias" class="mlink" data-i="nav_exp">Experiencias</a>
+      <a href="#galeria" class="mlink" data-i="nav_gallery">Galería</a>
+      <a href="#faq" class="mlink">FAQ</a>
+      <a href="#contacto" class="mlink" data-i="nav_contact">Contacto</a>
+      <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="btn-gold text-center py-3 rounded-full text-sm font-semibold mt-2" data-i="nav_cta">RESERVAR AHORA</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ MAIN SITE ============ -->
+<main id="site">
+
+<!-- HERO -->
+<section id="inicio" class="relative min-h-screen flex items-center overflow-hidden">
+  <div class="absolute inset-0 -z-10 imgwrap">
+    <img class="heroimg w-full h-full object-cover" src="https://images.unsplash.com/photo-1599582909646-9b16f8f6a51a?auto=format&fit=crop&w=2000&q=80" alt="Yate de lujo navegando frente a la costa de Mazatlán al atardecer" />
+    <div class="skeleton"></div>
+  </div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy/90 via-navy/55 to-navy/25"></div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-transparent to-navy/40"></div>
+
+  <div class="max-w-7xl mx-auto px-6 w-full pt-16 pb-44 md:pb-52">
+    <div class="max-w-2xl">
+      <p class="eyebrow text-gold reveal flex items-center gap-3"><span class="w-8 h-px bg-gold inline-block"></span><span data-i="hero_tag">Luxury Yacht Experiences in Mazatlán</span></p>
+      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl text-white font-500 leading-[1.02] mt-5 reveal d1">
+        Vive la magia<br><span class="italic text-gold">del mar</span> en Mazatlán
+      </h1>
+      <p class="text-white/80 text-lg leading-relaxed mt-7 max-w-xl reveal d2" data-i="hero_sub">
+        Paseos inolvidables, con trato inigualable, visitando los puntos más emblemáticos del puerto desde el agua. Reserva y descubre el Pacífico a bordo de nuestra flota.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-9 reveal d3">
+        <a href="#contacto" class="btn-gold px-8 py-4 rounded-full text-sm font-semibold tracking-wide" data-i="hero_book">Reservar Ahora</a>
+        <a href="#yates" class="btn-outline px-8 py-4 rounded-full text-sm font-semibold tracking-wide flex items-center gap-2" data-i="hero_fleet">Ver Flota <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="flex gap-10 mt-12 reveal d4">
+        <div><div class="font-display text-4xl text-gold" data-count="1200">0</div><div class="eyebrow text-white/55 text-[.6rem] mt-1" data-i="stat_clients">Clientes felices</div></div>
+        <div class="border-l border-white/15 pl-10"><div class="font-display text-4xl text-gold" data-count="3500">0</div><div class="eyebrow text-white/55 text-[.6rem] mt-1" data-i="stat_exp">Experiencias</div></div>
+        <div class="border-l border-white/15 pl-10"><div class="font-display text-4xl text-gold" data-count="12">0</div><div class="eyebrow text-white/55 text-[.6rem] mt-1" data-i="stat_years">Años en el mar</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING SEARCH -->
+  <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 px-6 z-20">
+    <div class="max-w-6xl mx-auto glass rounded-2xl p-5 md:p-6 shadow-2xl reveal d2">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+        <!-- Destino -->
+        <div class="md:col-span-4 relative">
+          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3"></i> <span data-i="f_dest">Destino</span></label>
+          <input id="destInput" autocomplete="off" placeholder="¿A dónde vamos?" data-ph-es="¿A dónde vamos?" data-ph-en="Where to?" class="w-full bg-transparent border-b border-white/25 text-white placeholder-white/40 py-2 focus:border-gold outline-none transition text-sm" />
+          <div id="destList" class="hidden absolute top-full left-0 right-0 mt-2 bg-navy border border-gold/25 rounded-xl overflow-hidden z-30 shadow-xl"></div>
+        </div>
+        <!-- Tipo -->
+        <div class="md:col-span-3">
+          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="sailboat" class="w-3 h-3"></i> <span data-i="f_type">Embarcación</span></label>
+          <select id="boatType" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-gold outline-none transition text-sm [&>option]:text-navy">
+            <option data-i="opt_all">Todos</option>
+            <option>Yates</option><option>Catamaranes</option><option>Trimaranes</option>
+          </select>
+        </div>
+        <!-- Pasajeros -->
+        <div class="md:col-span-2">
+          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="users" class="w-3 h-3"></i> <span data-i="f_pax">Pasajeros</span></label>
+          <div class="flex items-center justify-between border-b border-white/25 py-1.5">
+            <button onclick="pax(-1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-gold hover:text-gold transition">−</button>
+            <span id="paxVal" class="text-white font-medium">6</span>
+            <button onclick="pax(1)" class="w-7 h-7 rounded-full border border-white/30 text-white hover:border-gold hover:text-gold transition">+</button>
+          </div>
+        </div>
+        <!-- Fecha -->
+        <div class="md:col-span-2">
+          <label class="eyebrow text-gold/80 text-[.6rem] flex items-center gap-1.5"><i data-lucide="calendar" class="w-3 h-3"></i> <span data-i="f_date">Fecha</span></label>
+          <input type="date" id="dateInput" class="w-full bg-transparent border-b border-white/25 text-white py-2 focus:border-gold outline-none transition text-sm [color-scheme:dark]" />
+        </div>
+        <!-- CTA -->
+        <div class="md:col-span-12 lg:col-span-12">
+          <button onclick="doSearch()" class="btn-gold w-full py-3.5 rounded-xl text-sm font-bold tracking-wider mt-1" data-i="f_cta">¡RESERVA TU YATE AHORA!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- spacer for floating search -->
+<div class="h-44 md:h-40"></div>
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias" class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+  <div class="flex items-end justify-between mb-14 reveal">
+    <div>
+      <p class="chapter-no waterline pl-16">CAP. 01</p>
+      <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-3" data-i="exp_title">Experiencias a medida</h2>
+    </div>
+    <p class="hidden md:block max-w-sm text-ink/60 text-sm leading-relaxed" data-i="exp_lead">Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="expGrid"></div>
+</section>
+
+<!-- FLEET -->
+<section id="yates" class="bg-navy py-20 md:py-28 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <p class="chapter-no">CAP. 02</p>
+      <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2" data-i="fleet_title">Nuestra flota</h2>
+      <p class="text-white/55 max-w-xl mx-auto mt-4 text-sm leading-relaxed" data-i="fleet_lead">Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="fleetGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="galeria" class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+  <div class="text-center mb-12 reveal">
+    <p class="chapter-no">CAP. 03</p>
+    <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-2" data-i="gal_title">Galería</h2>
+  </div>
+  <div class="flex flex-wrap justify-center gap-3 mb-10 reveal" id="galFilters"></div>
+  <div class="masonry" id="galGrid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="bg-mist py-20 md:py-28 overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <p class="chapter-no">CAP. 04</p>
+      <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-2" data-i="testi_title">Lo que dicen a bordo</h2>
+    </div>
+    <div class="relative reveal">
+      <div class="overflow-hidden">
+        <div id="testiTrack" class="testi-track flex"></div>
+      </div>
+      <div class="flex items-center justify-center gap-3 mt-8">
+        <button onclick="testiMove(-1)" class="w-11 h-11 rounded-full border border-navy/20 text-navy hover:bg-navy hover:text-white transition flex items-center justify-center"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+        <div id="testiDots" class="flex gap-2"></div>
+        <button onclick="testiMove(1)" class="w-11 h-11 rounded-full border border-navy/20 text-navy hover:bg-navy hover:text-white transition flex items-center justify-center"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="max-w-3xl mx-auto px-6 py-20 md:py-28">
+  <div class="text-center mb-12 reveal">
+    <p class="chapter-no">CAP. 05</p>
+    <h2 class="font-display text-4xl md:text-5xl text-navy font-500 mt-2" data-i="faq_title">Preguntas frecuentes</h2>
+  </div>
+  <div id="faqList" class="divide-y divide-navy/10 border-t border-b border-navy/10"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="bg-navy py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
+    <div class="reveal">
+      <p class="chapter-no">CAP. 06</p>
+      <h2 class="font-display text-4xl md:text-5xl text-white font-500 mt-2 mb-6" data-i="con_title">Solicita tu cotización</h2>
+      <p class="text-white/60 leading-relaxed mb-10 text-sm max-w-md" data-i="con_lead">Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.</p>
+      <div class="space-y-5 text-white/85 text-sm">
+        <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="message-circle" class="w-5 h-5 text-gold"></i></span> +52 1 662 104 1665</a>
+        <a href="tel:6621041665" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5 text-gold"></i></span> 662 104 1665</a>
+        <a href="mailto:trimaranrevenantmzt@gmail.com" class="flex items-center gap-4 hover:text-gold transition"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="mail" class="w-5 h-5 text-gold"></i></span> trimaranrevenantmzt@gmail.com</a>
+        <div class="flex items-center gap-4"><span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5 text-gold"></i></span> Paseo de la Isla 2209, La Marina, Mazatlán</div>
+      </div>
+    </div>
+
+    <div class="glass rounded-2xl p-7 md:p-9 reveal d1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_name">Nombre</label><input id="cName" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm"></div>
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_phone">Teléfono</label><input id="cPhone" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm"></div>
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_email">Correo</label><input id="cEmail" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm"></div>
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_date">Fecha deseada</label><input id="cDate" type="date" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm [color-scheme:dark]"></div>
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_pax">Pasajeros</label><input id="cPax" type="number" value="6" min="1" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm"></div>
+        <div><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_boat">Yate de interés</label><input id="cBoat" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm"></div>
+        <div class="sm:col-span-2"><label class="eyebrow text-gold/80 text-[.6rem]" data-i="con_msg">Mensaje</label><textarea id="cMsg" rows="3" class="w-full bg-transparent border-b border-white/20 text-white py-2 outline-none focus:border-gold transition text-sm resize-none"></textarea></div>
+      </div>
+      <button onclick="sendQuote()" class="btn-gold w-full py-3.5 rounded-xl text-sm font-bold tracking-wider mt-7 flex items-center justify-center gap-2" data-i="con_cta"><i data-lucide="message-circle" class="w-4 h-4"></i> Solicitar Cotización</button>
+      <p class="text-white/40 text-[.7rem] text-center mt-3" data-i="con_note">Te respondemos por WhatsApp en minutos.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ DETAIL VIEW ============ -->
+<div id="detailView" class="view-detail fixed inset-0 z-[60] bg-paper overflow-y-auto"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-navy border-t border-gold/15 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2 max-w-sm">
+      <div class="font-display text-2xl text-white font-500">Yates Pepe <span class="text-gold">Mazatlán</span></div>
+      <p class="text-white/55 text-sm leading-relaxed mt-4" data-i="foot_about">Renta de yates de lujo en el puerto de Mazatlán. Vive la magia del mar con un trato inigualable.</p>
+      <div class="flex gap-3 mt-6">
+        <a href="https://www.instagram.com/trimaranrevenant" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-gold hover:text-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+        <a href="https://www.facebook.com/people/Yates-Pepe-Mazatl%C3%A1n/100070266970179" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-gold hover:text-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+        <a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-gold hover:text-gold transition"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+    <div>
+      <h4 class="eyebrow text-gold mb-5" data-i="foot_explore">Explorar</h4>
+      <ul class="space-y-3 text-white/60 text-sm">
+        <li><a href="#yates" class="hover:text-gold transition" data-i="nav_fleet">Yates</a></li>
+        <li><a href="#experiencias" class="hover:text-gold transition" data-i="nav_exp">Experiencias</a></li>
+        <li><a href="#galeria" class="hover:text-gold transition" data-i="nav_gallery">Galería</a></li>
+        <li><a href="#faq" class="hover:text-gold transition">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="eyebrow text-gold mb-5" data-i="foot_contact">Contacto</h4>
+      <ul class="space-y-3 text-white/60 text-sm">
+        <li><a href="tel:6621041665" class="hover:text-gold transition">662 104 1665</a></li>
+        <li><a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="hover:text-gold transition">+52 1 662 104 1665</a></li>
+        <li><a href="mailto:trimaranrevenantmzt@gmail.com" class="hover:text-gold transition break-all">trimaranrevenantmzt@gmail.com</a></li>
+        <li class="leading-relaxed">Paseo de la Isla 2209,<br>La Marina, Mazatlán,<br>Sinaloa, México 82103</li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-white/10 flex flex-col md:row items-center justify-between gap-3 text-white/40 text-xs">
+    <span>© 2026 Yates Pepe Mazatlán. <span data-i="foot_rights">Todos los derechos reservados.</span></span>
+    <span class="flex items-center gap-1.5"><i data-lucide="anchor" class="w-3.5 h-3.5 text-gold"></i> La Marina · Mazatlán · Sinaloa</span>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="https://wa.me/5216621041665" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xl wa-pulse hover:scale-110 transition" aria-label="WhatsApp">
+  <i data-lucide="message-circle" class="w-7 h-7"></i>
+</a>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox" class="hidden fixed inset-0 z-[70] bg-navy/95 backdrop-blur items-center justify-center p-6">
+  <button onclick="closeLb()" class="absolute top-6 right-6 text-white/80 hover:text-gold"><i data-lucide="x" class="w-8 h-8"></i></button>
+  <button onclick="lbNav(-1)" class="absolute left-4 md:left-10 text-white/70 hover:text-gold"><i data-lucide="chevron-left" class="w-10 h-10"></i></button>
+  <img id="lbImg" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl" />
+  <button onclick="lbNav(1)" class="absolute right-4 md:right-10 text-white/70 hover:text-gold"><i data-lucide="chevron-right" class="w-10 h-10"></i></button>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[80] hidden bg-navy text-white px-6 py-3.5 rounded-full shadow-2xl border border-gold/30 text-sm"></div>
+
+<script>
+/* ===================== DATA ===================== */
+const DESTS = ['Isla de Venados','Faro de Mazatlán','Piedra Blanca','Paseo Costero','Tour al Atardecer'];
+
+const EXPERIENCES = [
+  { es:{t:'Paseo al Atardecer',d:'Navega hacia el horizonte mientras el sol se hunde en el Pacífico. Brindis incluido.'}, en:{t:'Sunset Cruise',d:'Sail toward the horizon as the sun melts into the Pacific. Welcome toast included.'}, dur:'2.5h', img:'https://images.unsplash.com/photo-1502209524164-acea936639a2?auto=format&fit=crop&w=900&q=80' },
+  { es:{t:'Tour Privado',d:'La bahía solo para tu grupo. Ruta a medida por los íconos del puerto.'}, en:{t:'Private Tour',d:'The bay just for your group. A tailored route through the port\'s icons.'}, dur:'4h', img:'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=900&q=80' },
+  { es:{t:'Fiesta en Yate',d:'Música, cubierta y mar abierto. La celebración que nadie olvidará.'}, en:{t:'Yacht Party',d:'Music, open deck and open sea. The celebration no one forgets.'}, dur:'5h', img:'https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=900&q=80' },
+  { es:{t:'Evento Corporativo',d:'Impresiona a tu equipo o cliente con una experiencia premium sobre el agua.'}, en:{t:'Corporate Event',d:'Impress your team or client with a premium experience on the water.'}, dur:'A medida', img:'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=900&q=80' },
+  { es:{t:'Celebración Especial',d:'Cumpleaños, aniversarios o propuestas con el mar como testigo.'}, en:{t:'Special Celebration',d:'Birthdays, anniversaries or proposals with the sea as witness.'}, dur:'3h', img:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80' },
+  { es:{t:'Snorkel & Isla',d:'Fondea en aguas turquesa y explora la vida marina de Isla de Venados.'}, en:{t:'Snorkel & Island',d:'Anchor in turquoise water and explore the marine life of Deer Island.'}, dur:'4h', img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80' },
+];
+
+const FLEET = [
+  { id:'potenza', name:'Yate Potenza', sub:'Sea Ray 48 ft', type:'Yate', cap:12, price:'28,500', year:2019, cabins:2, baths:2,
+    img:'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1000&q=80' },
+  { id:'searay', name:'Sea Ray Elegance', sub:'Sea Ray 52 ft', type:'Yate', cap:14, price:'34,000', year:2020, cabins:3, baths:2,
+    img:'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1000&q=80' },
+  { id:'revenant', name:'Trimarán Revenant', sub:'Trimarán 50 ft', type:'Trimarán', cap:20, price:'22,000', year:2018, cabins:2, baths:2,
+    img:'https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1000&q=80' },
+  { id:'oceandream', name:'Ocean Dream', sub:'Catamarán 46 ft', type:'Catamarán', cap:18, price:'19,500', year:2021, cabins:4, baths:2,
+    img:'https://images.unsplash.com/photo-1599582909646-9b16f8f6a51a?auto=format&fit=crop&w=1000&q=80' },
+  { id:'sunset', name:'Sunset Majesty', sub:'Azimut 55 ft', type:'Yate', cap:16, price:'42,000', year:2022, cabins:3, baths:3,
+    img:'https://images.unsplash.com/photo-1605283176568-9b41fde3672e?auto=format&fit=crop&w=1000&q=80' },
+  { id:'bluehorizon', name:'Blue Horizon', sub:'Lagoon 50 ft', type:'Catamarán', cap:22, price:'26,000', year:2020, cabins:4, baths:3,
+    img:'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?auto=format&fit=crop&w=1000&q=80' },
+];
+
+const DETAIL_GALLERY = {
+  Exterior:['photo-1567899378494-47b22a2ae96a','photo-1599582909646-9b16f8f6a51a','photo-1605281317010-fe5ffe798166'],
+  Interior:['photo-1540946485063-a40da27545f8','photo-1582719478250-c89cae4dc85b','photo-1564013799919-ab600027ffc6'],
+  Camarotes:['photo-1611892440504-42a792e24d32','photo-1631049307264-da0ec9d70304','photo-1505693416388-ac5ce068fe85'],
+  'Áreas Comunes':['photo-1505691938895-1758d7feb511','photo-1502672260266-1c1ef2d93688','photo-1560448204-e02f11c3d0e2'],
+};
+
+const INCLUDES = ['Comedor exterior','Aire acondicionado','Cocina equipada','Tripulación profesional','Sistema de sonido','Bebidas de bienvenida','Chalecos salvavidas','Seguro de pasajeros'];
+const INCLUDES_EN = ['Outdoor dining','Air conditioning','Equipped galley','Professional crew','Sound system','Welcome drinks','Life jackets','Passenger insurance'];
+const EXCLUDES = ['Propinas','Transporte al muelle','Estacionamiento','Servicios externos'];
+const EXCLUDES_EN = ['Tips','Transport to dock','Parking','External services'];
+
+const GAL_CATS = ['Todos','Atardeceres','Tours','Eventos','Celebraciones','Yates'];
+const GALLERY = [
+  {c:'Atardeceres',id:'photo-1502209524164-acea936639a2'},
+  {c:'Yates',id:'photo-1567899378494-47b22a2ae96a'},
+  {c:'Tours',id:'photo-1544551763-46a013bb70d5'},
+  {c:'Eventos',id:'photo-1540946485063-a40da27545f8'},
+  {c:'Celebraciones',id:'photo-1469854523086-cc02fe5d8800'},
+  {c:'Yates',id:'photo-1605281317010-fe5ffe798166'},
+  {c:'Atardeceres',id:'photo-1605283176568-9b41fde3672e'},
+  {c:'Tours',id:'photo-1559128010-7c1ad6e1b6a5'},
+  {c:'Celebraciones',id:'photo-1519671482749-fd09be7ccebf'},
+  {c:'Yates',id:'photo-1599582909646-9b16f8f6a51a'},
+  {c:'Eventos',id:'photo-1530103862676-de8c9debad1d'},
+  {c:'Atardeceres',id:'photo-1473116763249-2faaef81ccda'},
+];
+
+const TESTIMONIALS = [
+  {n:'Mariana Ruiz', r:5, img:'photo-1494790108377-be9c29b29330', es:'El atardecer desde el Potenza fue de otro mundo. Pepe y su tripulación nos trataron como familia.', en:'The sunset from the Potenza was out of this world. Pepe and his crew treated us like family.'},
+  {n:'Carlos Mendoza', r:5, img:'photo-1507003211169-0a1dd7228f2d', es:'Reservamos el trimarán para el cumpleaños de mi esposa. Impecable, puntual y elegante. Repetiremos.', en:'We booked the trimaran for my wife\'s birthday. Flawless, punctual and elegant. We\'ll be back.'},
+  {n:'Sofía Herrera', r:5, img:'photo-1438761681033-6461ffad8d80', es:'Hicimos un evento corporativo a bordo y nuestros clientes quedaron encantados. Servicio premium real.', en:'We held a corporate event aboard and our clients were delighted. Truly premium service.'},
+  {n:'Andrés López', r:5, img:'photo-1500648767791-00dcc994a43e', es:'La mejor forma de ver Mazatlán. El faro y la Isla de Venados desde el agua, sin palabras.', en:'The best way to see Mazatlán. The lighthouse and Deer Island from the water, no words.'},
+];
+
+const FAQ = [
+  {es:{q:'¿Qué incluye la renta?',a:'Tripulación profesional, chalecos salvavidas, seguro de pasajeros, bebidas de bienvenida y sistema de sonido. Cada yate detalla su equipamiento en su ficha.'}, en:{q:'What does the rental include?',a:'Professional crew, life jackets, passenger insurance, welcome drinks and sound system. Each yacht lists its equipment on its detail page.'}},
+  {es:{q:'¿Dónde abordamos?',a:'Todas las salidas parten de La Marina, Paseo de la Isla 2209, Mazatlán. Te enviamos la ubicación exacta al confirmar.'}, en:{q:'Where do we board?',a:'All departures leave from La Marina, Paseo de la Isla 2209, Mazatlán. We send the exact location upon confirmation.'}},
+  {es:{q:'¿Se permiten alimentos?',a:'Sí, puedes traer tus alimentos o solicitar servicio de catering. Avísanos al reservar para preparar todo.'}, en:{q:'Is food allowed?',a:'Yes, you may bring your own food or request catering. Let us know when booking so we can prepare everything.'}},
+  {es:{q:'¿Cuál es la política de cancelación?',a:'Cancelaciones con 48 horas de anticipación reciben reprogramación sin costo. Las condiciones por clima se manejan caso por caso.'}, en:{q:'What is the cancellation policy?',a:'Cancellations 48 hours in advance get free rescheduling. Weather conditions are handled case by case.'}},
+  {es:{q:'¿Aceptan pagos con tarjeta?',a:'Sí. Aceptamos tarjeta, transferencia y efectivo. Para reservar se solicita un anticipo.'}, en:{q:'Do you accept card payments?',a:'Yes. We accept card, transfer and cash. A deposit is required to book.'}},
+  {es:{q:'¿Puedo personalizar mi experiencia?',a:'Por supuesto. Decoración, ruta, música y catering: diseñamos la salida alrededor de tu ocasión.'}, en:{q:'Can I customize my experience?',a:'Absolutely. Decoration, route, music and catering: we design the outing around your occasion.'}},
+];
+
+/* ===================== I18N ===================== */
+const I18N = {
+  nav_home:['Inicio','Home'], nav_fleet:['Yates','Fleet'], nav_exp:['Experiencias','Experiences'], nav_gallery:['Galería','Gallery'], nav_contact:['Contacto','Contact'], nav_cta:['RESERVAR','BOOK'],
+  hours:['Reservas 7 días · 8:00 – 20:00','Open 7 days · 8:00 – 20:00'],
+  hero_tag:['Luxury Yacht Experiences in Mazatlán','Luxury Yacht Experiences in Mazatlán'],
+  hero_sub:['Paseos inolvidables, con trato inigualable, visitando los puntos más emblemáticos del puerto desde el agua. Reserva y descubre el Pacífico a bordo de nuestra flota.','Unforgettable cruises with unmatched service, visiting the port\'s most iconic spots from the water. Book and discover the Pacific aboard our fleet.'],
+  hero_book:['Reservar Ahora','Book Now'], hero_fleet:['Ver Flota','View Fleet'],
+  stat_clients:['Clientes felices','Happy clients'], stat_exp:['Experiencias','Experiences'], stat_years:['Años en el mar','Years at sea'],
+  f_dest:['Destino','Destination'], f_type:['Embarcación','Vessel'], f_pax:['Pasajeros','Guests'], f_date:['Fecha','Date'], opt_all:['Todos','All'],
+  f_cta:['¡RESERVA TU YATE AHORA!','BOOK YOUR YACHT NOW!'],
+  exp_title:['Experiencias a medida','Tailored experiences'], exp_lead:['Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.','Every outing is designed around your occasion. Choose the pace, we handle the rest.'],
+  fleet_title:['Nuestra flota','Our fleet'], fleet_lead:['Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.','Yachts, catamarans and trimarans chosen for comfort, safety and elegance.'],
+  gal_title:['Galería','Gallery'], testi_title:['Lo que dicen a bordo','What guests say'], faq_title:['Preguntas frecuentes','Frequently asked'],
+  con_title:['Solicita tu cotización','Request a quote'], con_lead:['Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.','Tell us your occasion and an advisor will reply on WhatsApp with a tailored proposal.'],
+  con_name:['Nombre','Name'], con_phone:['Teléfono','Phone'], con_email:['Correo','Email'], con_date:['Fecha deseada','Preferred date'], con_pax:['Pasajeros','Guests'], con_boat:['Yate de interés','Yacht of interest'], con_msg:['Mensaje','Message'], con_cta:['Solicitar Cotización','Request Quote'], con_note:['Te respondemos por WhatsApp en minutos.','We reply on WhatsApp within minutes.'],
+  foot_about:['Renta de yates de lujo en el puerto de Mazatlán. Vive la magia del mar con un trato inigualable.','Luxury yacht rentals in the port of Mazatlán. Live the magic of the sea with unmatched service.'],
+  foot_explore:['Explorar','Explore'], foot_contact:['Contacto','Contact'], foot_rights:['Todos los derechos reservados.','All rights reserved.'],
+  dur:['Duración','Duration'], book_btn:['Reservar','Book'], more_info:['Ver más información','View details'],
+  from:['Desde','From'], cap_word:['Capacidad','Capacity'], per5h:['por 5 horas','per 5 hours'], pax_word:['pasajeros','guests'],
+  d_quote:['Cotizar Ahora','Get a Quote'], d_back:['Volver a la flota','Back to fleet'], d_spec:['Ficha técnica','Specifications'],
+  d_inc:['¿Qué incluye?','What\'s included?'], d_exc:['No incluye','Not included'], d_loc:['Ubicación','Location'], d_gal:['Galería','Gallery'],
+  s_cabins:['Camarotes','Cabins'], s_baths:['Baños','Bathrooms'], s_cap:['Capacidad','Capacity'], s_type:['Tipo','Type'], s_year:['Año','Year'],
+  sticky_q:['Cotizar tu experiencia','Quote your experience'], sticky_wa:['WhatsApp directo','Direct WhatsApp'],
+};
+let LANG = 'es';
+
+/* ===================== HELPERS ===================== */
+const t = k => (I18N[k] ? I18N[k][LANG==='es'?0:1] : k);
+const unsplash = (id,w=900) => `https://images.unsplash.com/${id.startsWith('photo')?id:'photo-'+id}?auto=format&fit=crop&w=${w}&q=80`;
+
+function imgEl(src, alt, cls='') {
+  return `<div class="imgwrap relative overflow-hidden ${cls}">
+    <img data-src="${src}" alt="${alt}" class="${cls.includes('fleet')?'fleet-img ':''}w-full h-full object-cover" loading="lazy"/>
+    <div class="skeleton"></div>
+  </div>`;
+}
+
+/* ===================== RENDER ===================== */
+function renderExp() {
+  document.getElementById('expGrid').innerHTML = EXPERIENCES.map((e,i)=>`
+    <article class="fleet-card reveal d${(i%3)+1} bg-white rounded-2xl overflow-hidden border border-navy/5 shadow-sm group cursor-pointer" onclick="prefill('${e.es.t.replace(/'/g,'')}')">
+      <div class="h-56">${imgEl(e.img, e.es.t,'fleet h-full')}</div>
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="eyebrow text-gold text-[.6rem] flex items-center gap-1.5"><i data-lucide="clock" class="w-3 h-3"></i> ${e.dur}</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4 text-navy/40 group-hover:text-gold transition"></i>
+        </div>
+        <h3 class="font-display text-2xl text-navy font-500 exp-t">${e[LANG].t}</h3>
+        <p class="text-ink/60 text-sm leading-relaxed mt-2 exp-d">${e[LANG].d}</p>
+      </div>
+    </article>`).join('');
+  refresh();
+}
+
+function renderFleet() {
+  document.getElementById('fleetGrid').innerHTML = FLEET.map((b,i)=>`
+    <article class="fleet-card reveal d${(i%3)+1} bg-white rounded-2xl overflow-hidden cursor-pointer group" onclick="openDetail('${b.id}')">
+      <div class="h-60 relative">${imgEl(b.img,b.name,'fleet h-full')}
+        <span class="absolute top-4 left-4 glass text-white text-[.65rem] eyebrow px-3 py-1.5 rounded-full">${b.type}</span>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-display text-2xl text-navy font-500">${b.name}</h3>
+            <p class="text-ink/50 text-xs mt-0.5">${b.sub}</p>
+          </div>
+          <span class="flex items-center gap-1 text-ink/60 text-sm"><i data-lucide="users" class="w-4 h-4 text-gold"></i> ${b.cap}</span>
+        </div>
+        <div class="flex items-end justify-between mt-5 pt-5 border-t border-navy/8">
+          <div>
+            <span class="eyebrow text-ink/40 text-[.55rem] block">${t('from')}</span>
+            <span class="font-display text-2xl text-navy">$${b.price} <span class="text-sm text-ink/50">MXN</span></span>
+          </div>
+          <span class="btn-gold px-4 py-2 rounded-full text-[.7rem] font-semibold flex items-center gap-1.5">${t('more_info')} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+        </div>
+      </div>
+    </article>`).join('');
+  refresh();
+}
+
+function renderGallery(filter='Todos') {
+  document.getElementById('galFilters').innerHTML = GAL_CATS.map(c=>`
+    <button onclick="renderGallery('${c}')" class="px-5 py-2 rounded-full text-xs font-medium transition ${c===filter?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}">${c==='Todos'?t('opt_all'):c}</button>`).join('');
+  const items = GALLERY.filter(g=>filter==='Todos'||g.c===filter);
+  document.getElementById('galGrid').innerHTML = items.map((g,i)=>`
+    <div class="reveal rounded-xl overflow-hidden cursor-pointer group relative" onclick="openLb('${unsplash(g.id,1400)}')">
+      ${imgEl(unsplash(g.id, 700), g.c,'')}
+      <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition flex items-end p-4">
+        <span class="text-white text-xs eyebrow opacity-0 group-hover:opacity-100 transition">${g.c}</span>
+      </div>
+    </div>`).join('');
+  refresh();
+}
+
+function renderTesti() {
+  document.getElementById('testiTrack').innerHTML = TESTIMONIALS.map(x=>`
+    <div class="min-w-full px-2">
+      <div class="bg-white rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto shadow-sm">
+        <div class="flex justify-center gap-1 mb-5">${'★'.repeat(x.r).split('').map(()=>'<span class="text-gold text-lg">★</span>').join('')}</div>
+        <p class="font-display text-2xl md:text-3xl text-navy font-400 italic leading-snug">“${x[LANG]}”</p>
+        <div class="flex items-center justify-center gap-3 mt-7">
+          <div class="imgwrap w-12 h-12 rounded-full overflow-hidden"><img data-src="${unsplash(x.img,200)}" alt="${x.n}" class="w-full h-full object-cover"/><div class="skeleton"></div></div>
+          <div class="text-left"><div class="font-semibold text-navy text-sm">${x.n}</div><div class="text-ink/50 text-xs">Mazatlán</div></div>
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('testiDots').innerHTML = TESTIMONIALS.map((_,i)=>`<button onclick="testiGo(${i})" class="w-2 h-2 rounded-full transition ${i===0?'bg-gold w-6':'bg-navy/20'}" data-dot="${i}"></button>`).join('');
+  refresh();
+}
+
+function renderFaq() {
+  document.getElementById('faqList').innerHTML = FAQ.map((f,i)=>`
+    <div class="reveal">
+      <button onclick="toggleFaq(${i})" class="w-full flex items-center justify-between py-6 text-left group">
+        <span class="font-display text-xl md:text-2xl text-navy font-500 pr-6 faq-q">${f[LANG].q}</span>
+        <span class="faq-icon shrink-0 w-9 h-9 rounded-full border border-navy/20 flex items-center justify-center text-navy transition group-hover:border-gold"><i data-lucide="plus" class="w-4 h-4"></i></span>
+      </button>
+      <div class="faq-body" id="faq${i}"><p class="text-ink/65 text-sm leading-relaxed pb-6 pr-12 faq-a">${f[LANG].a}</p></div>
+    </div>`).join('');
+  refresh();
+}
+
+/* ===================== DETAIL VIEW ===================== */
+function openDetail(id) {
+  const b = FLEET.find(x=>x.id===id);
+  const inc = LANG==='es'?INCLUDES:INCLUDES_EN;
+  const exc = LANG==='es'?EXCLUDES:EXCLUDES_EN;
+  const waMsg = encodeURIComponent(`Hola Yates Pepe, me interesa cotizar el ${b.name} (${b.sub}).`);
+
+  const galTabs = Object.keys(DETAIL_GALLERY);
+  const galHtml = galTabs.map((cat,ci)=>`
+    <div class="dgal-pane ${ci===0?'':'hidden'}" data-pane="${ci}">
+      <div class="masonry">${DETAIL_GALLERY[cat].map(p=>`
+        <div class="rounded-xl overflow-hidden cursor-pointer group" onclick="openLb('${unsplash(p,1400)}')">
+          ${imgEl(unsplash(p,700),cat,'')}
+        </div>`).join('')}</div>
+    </div>`).join('');
+
+  document.getElementById('detailView').innerHTML = `
+    <div class="min-h-screen">
+      <!-- detail header -->
+      <div class="sticky top-0 z-20 glass-light border-b border-navy/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <button onclick="closeDetail()" class="flex items-center gap-2 text-navy text-sm font-medium hover:text-gold transition"><i data-lucide="arrow-left" class="w-4 h-4"></i> ${t('d_back')}</button>
+          <div class="font-display text-lg text-navy font-500">${b.name}</div>
+          <a href="https://wa.me/5216621041665?text=${waMsg}" target="_blank" rel="noopener" class="hidden md:inline-flex btn-gold px-5 py-2 rounded-full text-xs font-semibold">${t('d_quote')}</a>
+        </div>
+      </div>
+
+      <!-- hero -->
+      <div class="relative h-[55vh] min-h-[380px]">
+        ${imgEl(b.img.replace('w=1000','w=1800'),b.name,'h-full')}
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0">
+          <div class="max-w-7xl mx-auto px-6 pb-10">
+            <span class="glass text-white eyebrow text-[.6rem] px-3 py-1.5 rounded-full">${b.type}</span>
+            <h1 class="font-display text-4xl md:text-6xl text-white font-500 mt-4">${b.name}</h1>
+            <p class="text-white/70 mt-2 flex items-center gap-2 text-sm"><i data-lucide="map-pin" class="w-4 h-4 text-gold"></i> La Marina, Mazatlán · ${b.sub}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-14">
+          <!-- spec -->
+          <section>
+            <h2 class="font-display text-3xl text-navy font-500 mb-6">${t('d_spec')}</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              ${[['bed-double',t('s_cabins'),b.cabins],['bath',t('s_baths'),b.baths],['users',t('s_cap'),b.cap+' '+t('pax_word')],['sailboat',t('s_type'),b.type],['calendar',t('s_year'),b.year]].map(s=>`
+                <div class="bg-mist rounded-xl p-5">
+                  <i data-lucide="${s[0]}" class="w-5 h-5 text-gold"></i>
+                  <div class="eyebrow text-ink/45 text-[.55rem] mt-3">${s[1]}</div>
+                  <div class="font-display text-2xl text-navy">${s[2]}</div>
+                </div>`).join('')}
+            </div>
+          </section>
+
+          <!-- gallery -->
+          <section>
+            <h2 class="font-display text-3xl text-navy font-500 mb-6">${t('d_gal')}</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+              ${galTabs.map((cat,ci)=>`<button onclick="dgalTab(${ci})" class="dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${ci===0?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}" data-tab="${ci}">${cat}</button>`).join('')}
+            </div>
+            ${galHtml}
+          </section>
+
+          <!-- includes -->
+          <section class="grid md:grid-cols-2 gap-10">
+            <div>
+              <h3 class="font-display text-2xl text-navy font-500 mb-5">${t('d_inc')}</h3>
+              <ul class="space-y-3">${inc.map(i=>`<li class="flex items-center gap-3 text-sm text-ink/75"><span class="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5 text-gold"></i></span> ${i}</li>`).join('')}</ul>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl text-navy font-500 mb-5">${t('d_exc')}</h3>
+              <ul class="space-y-3">${exc.map(i=>`<li class="flex items-center gap-3 text-sm text-ink/55"><span class="w-6 h-6 rounded-full bg-navy/8 flex items-center justify-center"><i data-lucide="x" class="w-3.5 h-3.5 text-navy/50"></i></span> ${i}</li>`).join('')}</ul>
+            </div>
+          </section>
+
+          <!-- location -->
+          <section>
+            <h2 class="font-display text-3xl text-navy font-500 mb-6">${t('d_loc')}</h2>
+            <div class="rounded-2xl overflow-hidden border border-navy/10 h-72">
+              <iframe title="Mapa La Marina Mazatlán" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=La%20Marina%20Mazatlan%20Paseo%20de%20la%20Isla%202209&output=embed"></iframe>
+            </div>
+          </section>
+        </div>
+
+        <!-- sticky booking -->
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-24 bg-white border border-navy/10 rounded-2xl p-7 shadow-lg">
+            <div class="eyebrow text-ink/45 text-[.55rem]">${t('from')}</div>
+            <div class="font-display text-4xl text-navy">$${b.price} <span class="text-base text-ink/50">MXN</span></div>
+            <div class="text-ink/50 text-sm">${t('per5h')}</div>
+            <div class="flex items-center gap-2 mt-5 text-sm text-ink/70 border-t border-navy/8 pt-5">
+              <i data-lucide="users" class="w-4 h-4 text-gold"></i> ${t('cap_word')}: ${b.cap} ${t('pax_word')}
+            </div>
+            <a href="#" onclick="closeDetail();setTimeout(()=>{prefill('${b.name}');document.getElementById('contacto').scrollIntoView()},80);return false;" class="btn-gold w-full py-3.5 rounded-xl text-sm font-bold tracking-wide mt-6 flex items-center justify-center gap-2"><i data-lucide="file-text" class="w-4 h-4"></i> ${t('sticky_q')}</a>
+            <a href="https://wa.me/5216621041665?text=${waMsg}" target="_blank" rel="noopener" class="w-full py-3.5 rounded-xl text-sm font-semibold mt-3 flex items-center justify-center gap-2 border border-navy/20 text-navy hover:bg-navy hover:text-white transition"><i data-lucide="message-circle" class="w-4 h-4"></i> ${t('sticky_wa')}</a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- mobile bottom sticky -->
+      <div class="lg:hidden sticky bottom-0 glass-light border-t border-navy/10 p-3 flex gap-3 z-20">
+        <a href="#" onclick="closeDetail();setTimeout(()=>{prefill('${b.name}');document.getElementById('contacto').scrollIntoView()},80);return false;" class="btn-gold flex-1 py-3 rounded-xl text-xs font-bold text-center">${t('sticky_q')}</a>
+        <a href="https://wa.me/5216621041665?text=${waMsg}" target="_blank" rel="noopener" class="bg-[#25D366] text-white px-5 py-3 rounded-xl flex items-center justify-center"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+      </div>
+    </div>`;
+
+  document.body.classList.add('detail-open');
+  const dv = document.getElementById('detailView');
+  dv.style.display='block'; dv.scrollTop=0;
+  refresh(); lazyAll();
+}
+function closeDetail(){ document.getElementById('detailView').style.display='none'; document.body.classList.remove('detail-open'); }
+function dgalTab(i){ document.querySelectorAll('.dgal-pane').forEach(p=>p.classList.toggle('hidden', +p.dataset.pane!==i)); document.querySelectorAll('.dgal-tab').forEach(b=>{const a=+b.dataset.tab===i; b.className=`dgal-tab px-4 py-2 rounded-full text-xs font-medium transition ${a?'bg-navy text-white':'bg-mist text-navy/70 hover:bg-navy/10'}`; b.dataset.tab=b.dataset.tab;}); lazyAll(); }
+
+/* ===================== INTERACTIONS ===================== */
+let paxCount = 6;
+function pax(d){ paxCount=Math.max(1,Math.min(30,paxCount+d)); document.getElementById('paxVal').textContent=paxCount; }
+
+function doSearch(){
+  const dest=document.getElementById('destInput').value||'tu destino';
+  const type=document.getElementById('boatType').value;
+  const date=document.getElementById('dateInput').value||'fecha por definir';
+  const msg=encodeURIComponent(`Hola Yates Pepe, quiero reservar. Destino: ${dest}. Embarcación: ${type}. Pasajeros: ${paxCount}. Fecha: ${date}.`);
+  window.open(`https://wa.me/5216621041665?text=${msg}`,'_blank');
+}
+
+// autocomplete
+const destInput=document.getElementById('destInput'), destList=document.getElementById('destList');
+destInput.addEventListener('input',()=>{
+  const v=destInput.value.toLowerCase();
+  const m=DESTS.filter(d=>d.toLowerCase().includes(v));
+  if(!v||!m.length){destList.classList.add('hidden');return;}
+  destList.innerHTML=m.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-gold hover:text-navy transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join('');
+  destList.classList.remove('hidden'); refresh();
+});
+destInput.addEventListener('focus',()=>{ if(!destInput.value){ destList.innerHTML=DESTS.map(d=>`<button onclick="pickDest('${d}')" class="w-full text-left px-4 py-3 text-sm text-white/85 hover:bg-gold hover:text-navy transition flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${d}</button>`).join(''); destList.classList.remove('hidden'); refresh(); }});
+document.addEventListener('click',e=>{ if(!e.target.closest('#destInput')&&!e.target.closest('#destList')) destList.classList.add('hidden'); });
+function pickDest(d){ destInput.value=d; destList.classList.add('hidden'); }
+
+function prefill(boat){ const f=document.getElementById('cBoat'); if(f) f.value=boat; document.getElementById('contacto').scrollIntoView({behavior:'smooth'}); toast(LANG==='es'?'Yate añadido a tu cotización':'Yacht added to your quote'); }
+
+function sendQuote(){
+  const n=val('cName'),p=val('cPhone'),e=val('cEmail'),d=val('cDate'),px=val('cPax'),b=val('cBoat'),m=val('cMsg');
+  if(!n){toast(LANG==='es'?'Escribe tu nombre':'Enter your name');return;}
+  const msg=encodeURIComponent(`Hola Yates Pepe, solicito cotización.\nNombre: ${n}\nTel: ${p}\nCorreo: ${e}\nFecha: ${d}\nPasajeros: ${px}\nYate: ${b}\nMensaje: ${m}`);
+  window.open(`https://wa.me/5216621041665?text=${msg}`,'_blank');
+}
+const val=id=>document.getElementById(id)?.value||'';
+
+function toast(txt){ const el=document.getElementById('toast'); el.textContent=txt; el.classList.remove('hidden'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.add('hidden'),2600); }
+
+// FAQ
+function toggleFaq(i){ const b=document.getElementById('faq'+i); const open=b.style.maxHeight&&b.style.maxHeight!=='0px'; document.querySelectorAll('.faq-body').forEach(x=>x.style.maxHeight='0px'); document.querySelectorAll('.faq-icon i').forEach(x=>x.setAttribute('data-lucide','plus')); if(!open){ b.style.maxHeight=b.scrollHeight+'px'; b.parentElement.querySelector('.faq-icon i').setAttribute('data-lucide','minus'); } refresh(); }
+
+// Testimonials
+let testiIdx=0;
+function testiGo(i){ testiIdx=(i+TESTIMONIALS.length)%TESTIMONIALS.length; document.getElementById('testiTrack').style.transform=`translateX(-${testiIdx*100}%)`; document.querySelectorAll('[data-dot]').forEach((d,j)=>d.className=`w-2 h-2 rounded-full transition ${j===testiIdx?'bg-gold w-6':'bg-navy/20'}`); }
+function testiMove(d){ testiGo(testiIdx+d); }
+setInterval(()=>{ if(!document.body.classList.contains('detail-open')) testiMove(1); },6000);
+
+// Lightbox
+let lbImgs=[],lbI=0;
+function openLb(src){ lbImgs=[src]; lbI=0; document.getElementById('lbImg').src=src; const lb=document.getElementById('lightbox'); lb.classList.remove('hidden'); lb.classList.add('flex'); }
+function closeLb(){ const lb=document.getElementById('lightbox'); lb.classList.add('hidden'); lb.classList.remove('flex'); }
+function lbNav(){}
+document.getElementById('lightbox').addEventListener('click',e=>{ if(e.target.id==='lightbox') closeLb(); });
+
+/* ===================== LANGUAGE ===================== */
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i]').forEach(el=>{ const k=el.getAttribute('data-i'); if(I18N[k]) el.textContent=t(k); });
+  document.querySelectorAll('[data-ph-es]').forEach(el=>el.placeholder=l==='es'?el.dataset.phEs:el.dataset.phEn);
+  document.querySelectorAll('.lang-btn').forEach(b=>{ const a=b.dataset.lang===l; b.className=`lang-btn px-3 py-1.5 font-semibold ${a?'bg-gold text-navy':'text-white/80'}`; });
+  renderExp(); renderFleet(); renderTesti(); renderFaq();
+  if(document.body.classList.contains('detail-open')) closeDetail();
+}
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+/* ===================== NAV / SCROLL ===================== */
+const nav=document.getElementById('nav');
+function onScroll(){
+  const s=window.scrollY>40;
+  nav.classList.toggle('bg-navy/95',s); nav.classList.toggle('backdrop-blur',s); nav.classList.toggle('shadow-lg',s);
+  nav.classList.toggle('py-0',s);
+}
+window.addEventListener('scroll',onScroll); onScroll();
+
+document.getElementById('burger').addEventListener('click',()=>{ const m=document.getElementById('mobileMenu'); m.classList.toggle('hidden'); });
+document.querySelectorAll('.mlink').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('hidden')));
+
+/* ===================== REVEAL + COUNTERS ===================== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+function observeReveals(){ document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el)); }
+
+// counters
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ const el=e.target,target=+el.dataset.count; let n=0; const step=target/60;
+    const tick=()=>{ n+=step; if(n<target){ el.textContent=Math.floor(n).toLocaleString()+(target>=1000?'+':''); requestAnimationFrame(tick);} else el.textContent=target.toLocaleString()+(target>=1000?'+':''); }; tick(); cio.unobserve(el); }
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ===================== LAZY LOADING ===================== */
+const lazyIo=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ const img=e.target; if(img.dataset.src){ img.src=img.dataset.src; img.onload=()=>img.classList.add('loaded'); img.removeAttribute('data-src'); } lazyIo.unobserve(img); }
+}),{rootMargin:'200px'});
+function lazyAll(){ document.querySelectorAll('img[data-src]').forEach(i=>lazyIo.observe(i)); document.querySelectorAll('.imgwrap img:not([data-src]):not(.loaded)').forEach(i=>{ if(i.complete) i.classList.add('loaded'); else i.onload=()=>i.classList.add('loaded'); }); }
+
+/* ===================== ICONS REFRESH ===================== */
+function refresh(){ lucide.createIcons(); observeReveals(); lazyAll(); }
+
+/* ===================== INIT ===================== */
+renderExp(); renderFleet(); renderGallery(); renderTesti(); renderFaq();
+lucide.createIcons(); observeReveals(); lazyAll();
+
+// hero image load
+document.querySelectorAll('.heroimg').forEach(i=>{ if(i.complete) i.classList.add('loaded'); else i.onload=()=>i.classList.add('loaded'); });
+</script>
+</body>
+</html>
