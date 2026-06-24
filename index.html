@@ -301,6 +301,9 @@ tailwind.config = {
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="expGrid"></div>
+  <div class="text-center mt-12" id="expMoreWrap">
+    <button onclick="toggleExp()" class="border border-navy/20 text-navy hover:bg-navy hover:text-white transition px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide inline-flex items-center gap-2 group"><span data-i="exp_more">Ver más experiencias</span> <i data-lucide="chevron-down" class="w-4 h-4 arrow-nudge"></i></button>
+  </div>
 </section>
 
 <!-- FLEET -->
@@ -326,6 +329,9 @@ tailwind.config = {
   </div>
   <div class="flex flex-wrap justify-center gap-3 mb-10 reveal" id="galFilters"></div>
   <div class="masonry" id="galGrid"></div>
+  <div class="text-center mt-10" id="galMoreWrap">
+    <button onclick="toggleGallery()" class="border border-navy/20 text-navy hover:bg-navy hover:text-white transition px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide inline-flex items-center gap-2 group"><span data-i="gal_more">Ver más fotos</span> <i data-lucide="chevron-down" class="w-4 h-4 arrow-nudge"></i></button>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -531,6 +537,7 @@ const I18N = {
   exp_title:['Experiencias a medida','Tailored experiences'], exp_lead:['Cada salida se diseña alrededor de tu ocasión. Elige el ritmo, nosotros nos encargamos del resto.','Every outing is designed around your occasion. Choose the pace, we handle the rest.'],
   fleet_title:['Nuestra flota','Our fleet'], fleet_lead:['Yates, catamaranes y trimaranes seleccionados por su confort, seguridad y elegancia.','Yachts, catamarans and trimarans chosen for comfort, safety and elegance.'],
   fleet_more:['Ver más yates','View more yachts'], d_other:['Otros yates disponibles','Other available yachts'],
+  exp_more:['Ver más experiencias','View more experiences'], gal_more:['Ver más fotos','View more photos'],
   gal_title:['Galería','Gallery'], testi_title:['Lo que dicen a bordo','What guests say'], faq_title:['Preguntas frecuentes','Frequently asked'],
   con_title:['Solicita tu cotización','Request a quote'], con_lead:['Cuéntanos tu ocasión y un asesor te responderá por WhatsApp con una propuesta a medida.','Tell us your occasion and an advisor will reply on WhatsApp with a tailored proposal.'],
   con_name:['Nombre','Name'], con_phone:['Teléfono','Phone'], con_email:['Correo','Email'], con_date:['Fecha deseada','Preferred date'], con_pax:['Pasajeros','Guests'], con_boat:['Yate de interés','Yacht of interest'], con_msg:['Mensaje','Message'], con_cta:['Solicitar Cotización','Request Quote'], con_note:['Te respondemos por WhatsApp en minutos.','We reply on WhatsApp within minutes.'],
@@ -557,8 +564,11 @@ function imgEl(src, alt, cls='') {
 }
 
 /* ===================== RENDER ===================== */
+const EXP_PAGE_SIZE = 3;
+let expExpanded = false;
 function renderExp() {
-  document.getElementById('expGrid').innerHTML = EXPERIENCES.map((e,i)=>`
+  const list = expExpanded ? EXPERIENCES : EXPERIENCES.slice(0, EXP_PAGE_SIZE);
+  document.getElementById('expGrid').innerHTML = list.map((e,i)=>`
     <article class="fleet-card reveal d${(i%3)+1} bg-white rounded-2xl overflow-hidden border border-navy/5 shadow-sm group cursor-pointer" onclick="prefill('${e.es.t.replace(/'/g,'')}')">
       <div class="h-56">${imgEl(e.img, e.es.t,'fleet h-full')}</div>
       <div class="p-6">
@@ -570,10 +580,13 @@ function renderExp() {
         <p class="text-ink/60 text-base leading-relaxed mt-2 exp-d">${e[LANG].d}</p>
       </div>
     </article>`).join('');
+  const moreWrap = document.getElementById('expMoreWrap');
+  if (moreWrap) moreWrap.style.display = (!expExpanded && EXPERIENCES.length > EXP_PAGE_SIZE) ? '' : 'none';
   refresh();
 }
+function toggleExp(){ expExpanded = true; renderExp(); }
 
-const FLEET_PAGE_SIZE = 4;
+const FLEET_PAGE_SIZE = 3;
 let fleetExpanded = false;
 function renderFleet() {
   const list = fleetExpanded ? FLEET : FLEET.slice(0, FLEET_PAGE_SIZE);
@@ -605,10 +618,16 @@ function renderFleet() {
 }
 function toggleFleet(){ fleetExpanded = true; renderFleet(); }
 
-function renderGallery(filter='Todos') {
+const GAL_PAGE_SIZE = 6;
+let galExpanded = false;
+let galFilter = 'Todos';
+function renderGallery(filter=galFilter) {
+  if (filter !== galFilter) galExpanded = false;
+  galFilter = filter;
   document.getElementById('galFilters').innerHTML = GAL_CATS.map(c=>`
     <button onclick="renderGallery('${c}')" class="px-5 py-2 rounded-full text-xs font-medium transition ${c===filter?'bg-teal text-white':'bg-mist text-navy/70 hover:bg-navy/10'}">${c==='Todos'?t('opt_all'):c}</button>`).join('');
-  const items = GALLERY.filter(g=>filter==='Todos'||g.c===filter);
+  const all = GALLERY.filter(g=>filter==='Todos'||g.c===filter);
+  const items = galExpanded ? all : all.slice(0, GAL_PAGE_SIZE);
   document.getElementById('galGrid').innerHTML = items.map((g,i)=>`
     <div class="reveal rounded-xl overflow-hidden cursor-pointer group relative" onclick="openLb('${unsplash(g.id,1400)}')">
       ${imgEl(unsplash(g.id, 700), g.c,'')}
@@ -616,8 +635,11 @@ function renderGallery(filter='Todos') {
         <span class="text-white text-xs eyebrow opacity-0 group-hover:opacity-100 transition">${g.c}</span>
       </div>
     </div>`).join('');
+  const moreWrap = document.getElementById('galMoreWrap');
+  if (moreWrap) moreWrap.style.display = (!galExpanded && all.length > GAL_PAGE_SIZE) ? '' : 'none';
   refresh();
 }
+function toggleGallery(){ galExpanded = true; renderGallery(galFilter); }
 
 function renderTesti() {
   document.getElementById('testiTrack').innerHTML = TESTIMONIALS.map(x=>`
