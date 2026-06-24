@@ -213,8 +213,7 @@ tailwind.config = {
     <img class="heroimg w-full h-full object-cover" src="https://images.unsplash.com/photo-1599582909646-9b16f8f6a51a?auto=format&fit=crop&w=2000&q=80" alt="Yate de lujo navegando frente a la costa de Mazatlán al atardecer" />
     <div class="skeleton"></div>
   </div>
-  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy/90 via-navy/55 to-navy/25"></div>
-  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-transparent to-navy/40"></div>
+  <div class="absolute inset-0 -z-10" style="background:linear-gradient(100deg, rgba(7,27,47,.72) 0%, rgba(7,27,47,.4) 45%, rgba(7,27,47,.16) 100%)"></div>
 
   <div class="max-w-7xl mx-auto px-6 w-full pt-16 pb-44 md:pb-52">
     <div class="max-w-2xl">
@@ -660,7 +659,7 @@ function openDetail(id) {
       <!-- hero -->
       <div class="relative h-[55vh] min-h-[380px]">
         ${imgEl(b.img.replace('w=1000','w=1800'),b.name,'h-full')}
-        <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/65 via-navy/15 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0">
           <div class="max-w-7xl mx-auto px-6 pb-10">
             <span class="glass text-white eyebrow text-[.6rem] px-3 py-1.5 rounded-full">${b.type}</span>
